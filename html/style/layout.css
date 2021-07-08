@@ -1,0 +1,221 @@
+/*
+* Amazium (http://www.amazium.co.uk)
+* Copyright 2010 - 2019, Mike Ballan
+* Licensed under MIT (https://github.com/OwlyStuff/Amazium/blob/master/LICENSE)
+*/
+
+/* Table of contents
+––––––––––––––––––––––––––––––––––––––––––––––––––
+- Font-face setup
+- Fonts overrides
+- Navigation
+- Color examples setup
+- Media Queries
+*/
+
+/***********************************************
+Font-face setup
+***********************************************/
+@font-face {
+  font-family:'ubuntu';
+  src:url('../font/ubuntu.eot');
+  src:url('../font/ubuntu.eot?#iefix') format('embedded-opentype'),
+    url('../font/ubuntu.woff') format('woff'),
+    url('../font/ubuntu.ttf') format('truetype'),
+    url('../font/ubuntu.svg#ubuntu') format('svg');
+  font-weight:normal;
+  font-style:normal;
+}
+
+@font-face {
+  font-family:'decalled';
+  src:url('../font/decalled.woff2') format('woff2'),
+      url('../font/decalled.woff') format('woff');
+  font-weight:normal;
+  font-style:normal;
+}
+
+@font-face {
+  font-family:'Baloo';
+  src:url('../font/baloo.woff2') format('woff2'),
+      url('../font/baloo.woff') format('woff');
+  font-weight:normal;
+  font-style:normal;
+}
+
+/***** Fonts overrides *****/
+body, form, input, textarea, select, label,
+.select select, .select optgroup option,
+.select optgroup option, .checkbox > span label,
+.radio > span label, form .message, .btn        { font-family:'ubuntu', Sans-Serif; }
+
+html                                            { scroll-behavior:smooth; background-color:#63C5C8; }
+body                                            { background-color:#FFF; color:#3b606e; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6                    { font-family:'Baloo', Sans-Serif; text-transform:uppercase; letter-spacing:2px; }
+
+h1                                              { font-size:50px; line-height:50px; font-family:'decalled', Sans-Serif; text-transform:none; }
+h1+*                                            { margin-top:20px; }
+
+h4                                              { font-weight:inherit; text-transform:none; }
+h6                                              { font-weight:initial; }
+
+hr                                              { margin:50px auto; width:120px; border:none; height:5px; background-color:rgba(255, 255, 255, .4); border-radius:10px; }
+figure                                          { padding-right:30px; border-width:4px; border-color:rgba(255, 255, 255, .4); }
+/***** Header *****/
+.header                                         { padding:0; width:100%; height:100vh; font-family:'Baloo', Sans-Serif; font-size:18px; letter-spacing:1.4px; background-color:rgb(0,0,0,.8); display:none; align-items:center; justify-content:center; position:fixed; top:0; left:0; z-index:10; }
+
+.icon--doughnut                                 { width:50px; height:50px; }
+.icon--logo                                     { width:90px; height:50px; }
+.icon--doughnut+.icon--logo                     { margin-left:10px; }
+
+.icon--size-xl.icon--doughnut                   { width:100px; height:100px; }
+.icon--size-xl.icon--logo                       { width:180px; height:100px; }
+
+/***** Nav *****/
+.nav                                            { margin:0; padding:0; list-style:none; }
+.nav li                                         { margin:0; padding:35px 0 0; text-transform:uppercase; font-weight:bold; }
+.nav a                                          { text-decoration:none; color:#FFF; }
+.nav a:after                                    { content:''; height:2px; width:0; display:block; background-color:#FFF; opacity:0; position:relative; left:50%; transform:translateX(-50%); border-radius:2px; transition:all 0.33s cubic-bezier(0.33, 0, 0.2, 1) 0s; }
+.nav a:hover:after,
+.nav .active a:after                            { width:100%; opacity:1; }
+
+/***** Mobile Nav button *****/
+.mobile_nav                                     { margin:0; padding:10px; display:inline-block; color:#FFFFFF; height:50px; width:50px; text-align:center; background-color:rgb(0,0,0,.2); cursor:pointer; -webkit-appearance:none; position:fixed; top:16px; right:16px; z-index:30; border-radius:5px; }
+.mobile_nav .icon                               { transition:opacity .2s linear 0s; -moz-transition:opacity .2s linear 0s; -webkit-transition:opacity .2s linear 0s; -o-transition:opacity .2s linear 0s; }
+.mobile_nav .menu                               { opacity:1; }
+.mobile_nav .cross                              { opacity:0; }
+
+/***** Active Nav *****/
+.menu_open .mobile_nav .menu                    { opacity:0; }
+.menu_open .mobile_nav .cross                   { opacity:1; }
+.menu_open .header                              { display:flex; flex-direction:column; }
+
+/***** Sections *****/
+.section                                        { padding:30px; min-height:100vh; display:flex; flex-direction:column; position:relative; z-index:8; }
+.section--viking                                { background-color:#63C5C8; }
+.section--sky                                   { background-color:#8B8BAE; color:#FFFFFF; }
+
+.section--icing                                 { background-color:#894e78; color:#FFFFFF; }
+.section--icing .grid--meshed .grid__item       { border-color:rgba(255, 255, 255, .2); }
+
+.section--dough                                 { background-color:#deb377; }
+.section--vCenter                               { align-items:center; justify-content:center; }
+
+p                                               { max-width:600px; }
+figure+*                                        { margin-top:30px; }
+.txt--center                                    { align-items:center; }
+
+/***** Photo grid *****/
+.photos                                         { margin:20px 0; padding:0; list-style:none; width:100%; display:flex; flex-wrap:wrap; }
+.photos li                                      { margin:10px; padding:0; position:relative; display:flex; text-align:left; width:calc(50% - 20px); flex-direction:column; position:relative; }
+.photos img                                     { width:100%; height:auto; position:absolute; top:50%; right:0; transform:translateY(-50%); }
+.main-img                                       { overflow:hidden; position:relative; border-radius:5px; box-shadow:0 0 0 10px rgba(0,0,0,.1); }
+
+.sixteen-nine:before                            { padding-top:56.25%; }
+.five-four:before, .four-three:before, 
+.one-one:before, .sixteen-nine:before, 
+.sixteen-ten:before                             { content:''; width:100%; display:block; }
+
+/***** Colors *****/
+.pink                                           { fill:#D268A8; }
+.pink--dark                                     { fill:#BF4F9C; }
+.pink--darker                                   { fill:#894E78; }
+.tan                                            { fill:#DEB477; }
+.tan--dark                                      { fill:#B1905F; }
+.purple                                         { fill:#7F4B9C; }
+.green                                          { fill:#A1CE69; }
+.blue                                           { fill:#61C5C9; }
+.yellow                                         { fill:#F9F399; }
+
+fieldset                                        { width:100%; max-width:100%; }
+
+input, textarea, select                         { padding:20px; border-radius:20px; min-height:60px; border:none; }
+
+.btn                                            { padding:13px 20px 10px 20px; font-family:'Baloo', Sans-Serif; background-color:rgba(0,0,0,.4); border-radius:50px; }
+.btn:hover                                      { background-color:rgba(0,0,0,.2); }
+.btn .icon                                      { top:-3px; }
+
+.icon-scroll                                    { margin:20px auto 0; display:none; width:26px; height:40px; box-shadow:inset 0 0 0 2px rgba(0,0,0,.4); border-radius:25px; position:absolute; left:50%; bottom:80px; transform:translateX(-50%); }
+.icon-scroll:before                             { margin-left:-2px; content:''; width:5px; height:5px; background:rgba(0,0,0,.4); border-radius:50%; position:absolute; left:50%; top:5px; animation-duration:1.5s; animation-iteration-count:infinite; animation-name:scroll; }
+
+.section--dough .grid--meshed .grid__item       { border-color:rgba(0,0,0,.2); }
+
+/***** Scroll animation *****/
+@-webkit-keyframes scroll {
+  0%                                            { opacity:1; }
+  100%                                          { opacity:0; transform:translateY(18px); }
+}
+@-moz-keyframes scroll {
+  0%                                            { opacity:1; }
+  100%                                          { opacity:0; transform:translateY(18px); }
+}
+@-ms-keyframes scroll {
+  0%                                            { opacity:1; }
+  100%                                          { opacity:0; transform:translateY(18px); }
+}
+@-o-keyframes scroll {
+  0%                                            { opacity:1; }
+  100%                                          { opacity:0; transform:translateY(18px); }
+}
+@keyframes scroll {
+  0%                                            { opacity:1; }
+  100%                                          { opacity:0; transform:translateY(18px); }
+}
+
+footer                                          { font-size:13px; width:100%; text-align:center; position:absolute; left:50%; bottom:40px; transform:translateX(-50%); }
+footer a                                        { font-family:'Baloo', Sans-Serif; text-decoration:none; }
+footer a:hover                                  { color:#FFFFFF; }
+
+/***********************************************
+Tablet - This applies from 768px onwards
+***********************************************/
+@media (min-width:768px) {
+  h1                                            { font-size:70px; line-height:60px; }
+  h1+*                                          { margin-top:30px; }
+
+  .mobile_nav                                   { display:none; }
+  .nav                                          { display:flex; flex-direction:column; }
+
+  .header                                       { width:calc(100% - 60px); color:#FFF; height:auto; display:flex; background-color:transparent; left:30px; }
+
+  .nav                                          { margin-left:auto; }
+
+  .main-logo                                    { position:relative; top:20px; }
+  a.main-logo:after                             { display:none; }
+
+  .section                                      { padding:100px 30px;  }
+
+  .photos li                                    { margin:40px; width:calc(33.333% - 80px); }
+
+  .icon-scroll                                  { display:block; }
+}
+
+/***********************************************
+Smaller screen - This applies from 992px onwards
+***********************************************/
+@media (min-width:992px) {
+  .section--nav                                 { padding-top:0; padding-bottom:0; background-color:#FFF; position:fixed; top:0; z-index:10; }
+
+  .nav                                          { flex-direction:row; }
+  .nav li+*                                     { margin-left:30px; }
+}
+
+@media screen and (prefers-reduced-motion:reduce) {
+  html                                          { scroll-behavior:auto; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
